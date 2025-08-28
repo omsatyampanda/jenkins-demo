@@ -1,17 +1,15 @@
-# Jenkins Demo Project 🚀
+# Jenkins Interview Task – Satyam Panda
 
-This is a simple demo project to test Jenkins with GitHub.
+This repo contains a complete, dockerized solution for the three parts:
 
-## Steps to Run
+- **Part 1:** Scripted pipeline creates a ZIP, generates an HTML report, emails it via MailHog, and publishes the report.
+- **Part 2:** Report generation moved to a Jenkins Shared Library in `shared-lib/`.
+- **Part 3 (optional):** Minimal custom Jenkins plugin step (instructions included).
 
-1. Jenkins pulls this repo automatically.
-2. Jenkins uses the `Jenkinsfile` to run a pipeline.
-3. The pipeline prints **Hello World from Jenkins!** 🎉
+## Quick Start
 
-## Repository Structure
+1. Install Docker & Docker Compose.
+2. Clone this repo and run:
 
-- `Jenkinsfile` → Defines the Jenkins pipeline.
-- `README.md` → This file (instructions for reviewers).
-
-## Author
-Om Satyam Panda ✨
+```bash
+docker compose up -d
