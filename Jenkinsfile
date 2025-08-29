@@ -7,17 +7,17 @@ node {
 
     try {
         stage('Create and upload zip') {
-            def start = System.currentTimeMillis()
-            sh '''
-                mkdir -p artifacts
-                echo "Hello from Satyam Panda - sample file" > artifacts/sample.txt
-                if [ -f README.md ]; then cp README.md artifacts/README.md; fi
-            '''
-            zip zipFile: 'artifacts/my-archive.zip', dir: 'artifacts'
-            archiveArtifacts artifacts: 'artifacts/my-archive.zip'
-            recordSummary('Create and upload zip', System.currentTimeMillis() - start, currentBuild.currentResult ?: 'SUCCESS', 'Created artifacts and zipped')
-        }
-
+    def start = System.currentTimeMillis()
+    sh '''
+        mkdir -p artifacts
+        echo "Hello from Satyam Panda - sample file" > artifacts/sample.txt
+        if [ -f README.md ]; then cp README.md artifacts/README.md; fi
+        rm -f artifacts/my-archive.zip   # remove old zip if exists
+    '''
+    zip zipFile: 'artifacts/my-archive.zip', dir: 'artifacts'
+    archiveArtifacts artifacts: 'artifacts/my-archive.zip'
+    recordSummary('Create and upload zip', System.currentTimeMillis() - start, currentBuild.currentResult ?: 'SUCCESS', 'Created artifacts and zipped')
+}
         stage('Generate HTML report') {
             def start = System.currentTimeMillis()
             def rows = ''
