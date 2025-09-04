@@ -89,3 +89,21 @@ git push origin task/satyam
 
 ---
 
+How to use Jenkinsfile_SL.groovy. To add that, run:
+
+cat >> README.md <<'EOF'
+
+## Extra: Scripted pipeline using shared-lib
+If you want Jenkins to run the pipeline that uses the shared library, either:
+* Use `Jenkinsfile_SL.groovy` (Script Path) when creating a Pipeline job from SCM; or
+* Add `@Library('interview-lib') _` and call `reportGenerator(stageSummaries, env.JOB_NAME, env.BUILD_NUMBER)` in your Jenkinsfile.
+
+When configuring the Global Pipeline Library in Jenkins:
+* Name: `interview-lib`
+* Default version: `task/satyam`
+* Library Path: `shared-lib`
+EOF
+
+git add README.md
+git commit -m "docs: note how to use Jenkinsfile_SL.groovy and shared-lib"
+git push
